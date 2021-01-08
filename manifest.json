@@ -6,7 +6,7 @@
 	"browser_action": {     
 		"default_icon": "assets/juice.png",
 		"default_title": "Juice a Movie",
-		"default_popup": "newtab.html" 
+		"default_popup": "newtab.html"
 	},
 	"chrome_url_overrides" : {  "newtab": "newtab.html"},
     "permissions": ["activeTab"]

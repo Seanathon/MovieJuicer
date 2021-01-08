@@ -4,7 +4,8 @@
 	"version": "0.01", 
 	"author": "Sam & Sean",
 	"browser_action": {     
-		"default_title": "Have a good day",
+		"default_icon": "assets/juice.png",
+		"default_title": "Juice a Movie",
 		"default_popup": "newtab.html"
 	},
 	"chrome_url_overrides" : {  "newtab": "newtab.html"},

@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		const searchButton = document.querySelector('#searchbutton');
     
     searchButton.addEventListener('click', function() {
-			const searchQuery = document.querySelector('#searchbar').value;
-			console.log('button working')
-			console.log(searchQuery);
+        const searchQuery = document.querySelector('#searchbar').value;
+        console.log('button working')
+        console.log(searchQuery);
 
-			searchMovies(searchQuery);
-		});
+        searchMovies(searchQuery);
+	});
 	// fetch data from URL
 	// this URL accesses the movie db's search function 
 	

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Movie Juice</title>
+	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+	<div class="container">
+		<header>
+			<div id="logo">
+				<img src="assets/juice.png" alt="">
+				<div>MovieJuice</div>
+			</div>
+			<div class="search-container">
+				<i class='bx bx-search' ></i>
+				<input id="searchbar" type="text" placeholder="What movie?">
+				<button id="searchbutton" type="button">
+					<i class='bx bx-right-arrow-alt'></i>
+				</button>
+			</div>
+		</header>
+		<div id="results-container">
+			<!-- Let's pre-load results load here with a document
+					 onReady fetch. Perhaps a search relavant to Saturday
+					 presentation... Martin Luther King movies? -->
+		</div>
+	</div>
+	
+	
+	<script src="src/main.js"></script>
+</body>
+</html>

@@ -4,8 +4,57 @@
 
 // https://api.themoviedb.org/3/movie/76341?api_key=<<api_key>>
 
-const searchMovies = (searchQuery) => {
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=f3a00745aef1f38d75739bbb768b6096&query=${searchQuery}`, {
+const apiKey = 'f3a00745aef1f38d75739bbb768b6096';
+const popup = document.querySelector('.popup-container');
+
+const buildResults = data => {
+		
+	for (let i = 0; i < data.results.length; i++) { 
+		const resultContainer = document.createElement('div')
+		resultContainer.className = "search-result"
+		resultContainer.id = data.results[i].id
+
+		const resultName = document.createElement('h1')
+		resultName.id = "result-name"
+
+		const image = document.createElement('img')
+		image.id = "movie-poster"
+
+		
+		const container = document.querySelector('#results-container');
+
+		if (data.results[i].media_type === 'tv') {
+			resultName.textContent = `${data.results[i].name}`;
+		}
+		else {
+			resultName.textContent = `${data.results[i].original_title}`;
+		}
+
+		image.src = `https://image.tmdb.org/t/p/w500${data.results[i].poster_path}`
+		
+		resultContainer.append(image)
+		resultContainer.append(resultName)
+		container.append(resultContainer);
+	};
+}
+
+const buildSingleResult = data => {
+	const image = document.querySelector('.popup-poster');
+	image.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+
+	const bgImage = document.querySelector('.popup-bg');
+	bgImage.src = `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/${data.backdrop_path}`
+
+	const title = document.querySelector('.title');
+	title.innerHTML = data.title;
+
+	const overview = document.querySelector('.overview');
+	overview.innerHTML = data.overview;
+}
+
+const moviesOnLoad = (key) => {
+	// options include: now_playing, top_rated, popular
+  fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US`, {
     method: 'GET',
     header: {
       'Content-Type': 'application/json',
@@ -13,24 +62,110 @@ const searchMovies = (searchQuery) => {
   })
     .then(respObj => respObj.json())
     .then(data => {
-		console.log(data)
-			
-      }
-    )
+			console.log(data);
+			buildResults(data);
+			newResultsListener();
+		})
+		.catch(error => {
+			console.log(error);
+		});
   
 }
 
+const searchMovies = (searchQuery, key) => {
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`, {
+    method: 'GET',
+    header: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then(respObj => respObj.json())
+    .then(data => {
+			console.log(data);
+			clearResults();
+			buildResults(data);
+			newResultsListener();
+		})
+		.catch(error => {
+			console.log(error);
+		});
+  
+}
+
+const viewTitle = (id, key) => {
+	fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`, {
+    method: 'GET',
+    header: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then(respObj => respObj.json())
+    .then(data => {
+			console.log(data);
+			buildSingleResult(data);
+			popup.classList.remove('hide');
+		})
+		.catch(error => {
+			console.log(error);
+		});
+		
+}
+
+const clearResults = () => {
+	const container = document.querySelector('#results-container');
+	container.innerHTML = '';
+}
+
+function newResultsListener() {
+	setTimeout( function() {
+		const searchResults = document.getElementsByClassName('search-result');
+		for(const result of searchResults) {
+			result.removeEventListener('click', e => {
+				// const id = result.getAttribute("id");
+				// viewTitle(id, apiKey);
+			})
+			result.addEventListener('click', e => {
+				const id = result.getAttribute("id");
+				viewTitle(id, apiKey);
+			})
+		}
+	}, 1000);
+}
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
 		
+	
+		moviesOnLoad(apiKey);
+		
+		const logo = document.querySelector('#logo');
 		const searchButton = document.querySelector('#searchbutton');
-    
-    searchButton.addEventListener('click', function() {
-        const searchQuery = document.querySelector('#searchbar').value;
-        console.log('button working')
-        console.log(searchQuery);
+		const searchQuery = document.querySelector('#searchbar');
+		const openSearchBar = document.querySelector('.bx-search');
+		const closeIcon = document.querySelector('.bx-x');
+		
+		openSearchBar.addEventListener('click', function() {
+			this.classList.add('hide');
+			logo.classList.add('hide');
+			searchQuery.classList.add('show');
+		});
 
-        searchMovies(searchQuery);
-	});
+    searchButton.addEventListener('click', function() {
+        searchMovies(searchQuery.value, apiKey);
+		});
+
+		// if you press enter in the search bar, it'll submit your search
+		searchQuery.addEventListener('keydown', e => {
+			if (e.keyCode === 13) searchMovies(searchQuery.value, apiKey);
+		});
+
+		closeIcon.addEventListener('click', e => {
+			popup.classList.add('hide');
+		});
+
+		
+
 	// fetch data from URL
 	// this URL accesses the movie db's search function 
 	
@@ -43,5 +178,4 @@ document.addEventListener('DOMContentLoaded', function() {
 	// fetch from API with movie ID
 
 	// respond with an object of all the movie details 
-
 });

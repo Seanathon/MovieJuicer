@@ -1,0 +1,251 @@
+* {
+	box-sizing: border-box;
+}
+html {
+	font-size: 17px;
+}
+body {
+	font-family: sans-serif;
+	padding: 0;
+	margin: 0;
+	background-color: #0B0806;
+	color: #e6e4e4;
+	border-radius: 0.47em;
+}
+header {
+	padding: 0.7em 0.27rem;
+	background-color: #242f32;
+}
+img {
+	max-width: 100%;
+}
+#logo {
+	position: absolute;
+	height: 27px;
+	width: auto;
+	display: flex;
+	justify-content: space-around;
+}
+#logo img {
+	width: 27px;
+}
+#logo div {
+	font-size: 1.27em;
+	font-weight: bold;
+	letter-spacing: 0.07em;
+	line-height: 32px;
+	padding-left: 0.27em;
+	color: #e6e4e4;
+	text-transform: uppercase;
+}
+.container {
+	width: 100%;
+	height: 320px;
+}
+
+.search-container {
+	position: relative;
+	width: 320px;
+	height: 2rem;
+	display: flex;
+}
+
+#searchbar {
+	font-size: 1.47em;
+	font-weight: normal;
+	letter-spacing: 0.047em;
+	width: 100%;
+	max-width: 0%;
+	padding: 0 0.5em 0 2em;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	/* border: 2px solid rgba(255,255,255,0.47); */
+	border-bottom: none;
+	background-color: transparent;
+	color: #e6e4e4;
+	appearance: none;
+	outline: 0;
+	border-radius: 4px 0 0 4px;
+	transition: all 540ms ease-in-out;
+}
+#searchbar.show {
+	max-width: 320px;
+	transition: all 540ms ease-in-out;
+}
+#searchbar::placeholder {
+	font-weight: 300;
+	color: #e6e4e4;
+}
+#searchbar:focus {
+	outline: 0;
+}
+.bx-search {
+	position: absolute;
+	right: 0;
+	padding: 0.21em;
+	color: #e6e4e4;
+	font-size: 2.14em;
+	transition: all 540ms ease-in-out;	
+}
+
+button {
+	cursor: pointer;
+	font-size: 2.84em;
+	background-color: transparent;
+	color: #e6e4e4;
+	border: none;
+	border-radius: 0 4px 4px 0;
+	padding: 0 1rem;
+	letter-spacing: 0.047em;
+	max-width: 0;
+}
+button i {
+	opacity: 0;
+}
+#results-container {
+	position: relative;
+	padding: 1rem;
+	width: 100%;
+	max-width: 320px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 5%;
+}
+.search-result {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	background-color: #242f32;
+	margin: 0.7em 0;
+	border-radius: 0.27rem;
+	/* grid-column: 1 / span 2; */
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.search-result #movie-poster {
+	border-radius: 0.27rem;
+	width: 100%;
+	object-fit: cover;
+	object-position: top center;
+	/* max-height: 14em; */
+	transition: all 2.7s linear;
+}
+.search-result:hover #movie-poster {
+	transform: scale(1.1);
+	transition: all 7s linear;
+}
+.search-result #result-name {
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	margin: 0;
+	border-radius: 0 0 0.27rem 0.27rem;
+	padding: 2.7em 0.7em 0.7em;
+	width: 100%;
+	/* height: 6rem; */
+	background: rgb(11,8,6);
+	background: linear-gradient(0, rgba(11,8,6,1) 1%, rgba(11,8,6,0) 100%);
+	font-size: 1.47em;
+	font-weight: 700;
+}
+
+.popup-container {
+	z-index: 2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	padding: 15%;
+	background-color: #242f32;
+	transition: all 540ms ease-in-out;
+}
+.popup-container .background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+.popup-container img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.popup-container .popup-bg {
+	min-width: 320px;
+}
+
+.popup-container .mask {
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #0b0806c0;
+	pointer-events: none;
+}
+.popup-container header {
+	background-color: transparent;
+	position: relative;
+	text-align: right;
+	color: #e6e4e4;
+}
+
+.popup-container header i {
+	font-size: 2.7em;
+	cursor: pointer;
+}
+
+.popup-container section {
+	position: relative;
+	display: grid;
+	width: 100%;
+	height: 100%;
+	grid-template-columns: 33.3% 1fr;
+	column-gap: 5%;
+}
+
+section > div {
+	position: relative;
+}
+
+section h1 {
+	font-size: 2.7em;
+}
+section p {
+	font-size: 1.14em;
+	line-height: 1.54em;
+}
+
+.desktop-container #results-container {
+	max-width: none;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	column-gap: 5%;
+	row-gap: 2%;
+}
+
+.hide {
+	visibility: hidden;
+	opacity: 0;
+	transition: all 540ms ease-in-out;
+	pointer-events: none;
+}
+
+/* .show {
+	visibility: visible;
+	opacity: 1;
+	transition: all 540ms ease-in-out;
+	pointer-events: auto;
+} */

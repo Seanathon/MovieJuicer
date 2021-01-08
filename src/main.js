@@ -13,7 +13,7 @@ const searchMovies = (searchQuery) => {
   })
     .then(respObj => respObj.json())
     .then(data => {
-			console.log(data)
+		console.log(data)
 			
       }
     )

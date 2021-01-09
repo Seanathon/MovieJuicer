@@ -1,11 +1,13 @@
 * {
 	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 html {
 	font-size: 17px;
 }
 body {
-	font-family: sans-serif;
+	font-family: 'Oswald', sans-serif;
 	padding: 0;
 	margin: 0;
 	min-height: 575px;
@@ -37,7 +39,7 @@ img {
 	color: #ffffff;
 	padding: 0.5rem 0.6rem;
 	border-radius: 0.7rem;
-	font-weight: 600;
+	font-weight: 500;
 	letter-spacing: 0.06em;
 }
 .desktop-container + .popup-container .meta li {
@@ -58,8 +60,8 @@ img {
 	width: 27px;
 }
 #logo div {
-	font-size: 1.27em;
-	font-weight: bold;
+	font-size: 1.54em;
+	font-weight: 500;
 	letter-spacing: 0.07em;
 	line-height: 32px;
 	padding-left: 0.27em;
@@ -102,7 +104,7 @@ img {
 	transition: all 540ms ease-in-out;
 }
 #searchbar::placeholder {
-	font-weight: 300;
+	font-weight: 100;
 	color: #e6e4e4;
 }
 #searchbar:focus {
@@ -130,7 +132,10 @@ button {
 	border-radius: 0 4px 4px 0;
 	padding: 0 1rem;
 	letter-spacing: 0.047em;
-	max-width: 0;
+	/* max-width: 0; */
+}
+button:focus {
+	outline: 0;
 }
 button i {
 	opacity: 0;
@@ -182,7 +187,10 @@ button i {
 	font-size: 1.47em;
 	font-weight: 700;
 }
+.desktop-container #result-name {
+	font-size: 1.54em;
 
+}
 .popup-container {
 	z-index: 2;
 	position: fixed;
@@ -304,6 +312,19 @@ section p {
 	row-gap: 2%;
 }
 
+.desktop-container header {
+	display: grid;
+	grid-template-columns: 320px 1fr 320px;
+	justify-items: center;
+}
+.desktop-container #logo {
+	position: relative;
+	max-width: 150px;
+}
+.desktop-container #search-container {
+
+}
+
 .hide {
 	visibility: hidden;
 	opacity: 0;
@@ -321,12 +342,12 @@ body.popup.lock-scroll {
 	/* position: fixed; */
 }
 
-/* .show {
+.show {
 	visibility: visible;
 	opacity: 1;
 	transition: all 540ms ease-in-out;
 	pointer-events: auto;
-} */
+}
 
 /* #tmdb-button {
   	background-color: rgb(3, 37, 65);

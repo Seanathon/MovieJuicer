@@ -191,12 +191,16 @@ document.addEventListener('DOMContentLoaded', function() {
 		const searchButton = document.querySelector('#searchbutton');
 		const searchQuery = document.querySelector('#searchbar');
 		const openSearchBar = document.querySelector('.bx-search');
+		const searchBtnIcon = document.querySelector('.bx-right-arrow-alt');
 		const closeIcon = document.querySelector('.bx-x');
 		
 		openSearchBar.addEventListener('click', function() {
+			if(body.classList.contains('popup')) {
+				logo.classList.add('hide');
+			}
 			this.classList.add('hide');
-			logo.classList.add('hide');
 			searchQuery.classList.add('show');
+			searchBtnIcon.classList.add('show');
 		});
 
     searchButton.addEventListener('click', function() {

@@ -171,6 +171,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		closeIcon.addEventListener('click', e => {
 			popup.classList.add('hide');
     });
+
+    
+    
 	// fetch data from URL
 	// this URL accesses the movie db's search function 
   
@@ -184,3 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// respond with an object of all the movie details 
 });
+
+let thisMovie = getMovieTitle();
+console.log(thisMovie);

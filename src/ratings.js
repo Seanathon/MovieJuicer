@@ -1,24 +1,27 @@
+let movieName = '';
+
 function getMovieTitle() {
-  
     let currentTitle = document.querySelectorAll('.previewModal--player-titleTreatment-logo');
-    if (currentTitle === undefined) { return; }
-  
-    let movieName = currentTitle[0].getAttribute('alt')
     
+    if (currentTitle[0].getAttribute('alt')) {
+        movieName = currentTitle[0].getAttribute('alt')
+    } else {
+        currentTitle = undefined;
+    }
+
+    if (currentTitle === undefined) { return; }
     console.log(movieName)
-    // get movie data of current title and append to popup
     return movieName;
+    // get movie data of current title and append to popup
 }
 
 console.log('loaded')
 
-
-// document.addEventListener('DOMContentLoaded', function() { 
 if (window.sessionStorage !== "undefined") {
     var target = document.body;
 
     const observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
+        mutations.forEach(function(mutation) {
             window.setTimeout(getMovieTitle, 5);
         });
     });
@@ -31,8 +34,8 @@ if (window.sessionStorage !== "undefined") {
   observer.observe(target, config);
 }
 
-const movieTitle = getMovieTitle();
-console.log(movieTitle)
+getMovieTitle();
+console.log(movieName)
 
 if(movieTitle) {
     chrome.runtime.sendMessage({movie: movieTitle}, function(response) {

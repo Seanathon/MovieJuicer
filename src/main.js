@@ -36,7 +36,7 @@ const buildResults = data => {
     // })
 		resultContainer.append(image)
 		resultContainer.append(resultName)
-		container.append(resultContainer);
+		container.append(resultContainer)
   };
   
 }
@@ -142,8 +142,6 @@ function newResultsListener() {
   
 }
 
-// search netflix listing for movie name
-
 document.addEventListener('DOMContentLoaded', function() {
 		
 	
@@ -173,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		closeIcon.addEventListener('click', e => {
 			popup.classList.add('hide');
     });
-
 	// fetch data from URL
 	// this URL accesses the movie db's search function 
   

@@ -10,11 +10,14 @@
 		"default_popup": "popup.html"
 	},
 	"chrome_url_overrides" : {  "newtab": "newtab.html"},
-	"permissions": ["activeTab", "contextMenus", "tabs", "<all_urls>"],
+	"permissions": ["activeTab", "contextMenus", "tabs", "<all_urls>", "storage"],
 	"icons": {
 		"16": "assets/juice.png"
 	},
-	"background": {"scripts": ["src/menu.js"]},
+	"background": {
+		"scripts": ["src/menu.js"],
+		"persistent": true
+	},
 	"content_scripts": [{
 		"matches": [ "https://www.netflix.com/*", "https://www.disneyplus.com/*" ],
 		"js": ["src/ratings.js"]

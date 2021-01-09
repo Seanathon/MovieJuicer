@@ -98,7 +98,22 @@ const searchMovies = (searchQuery, key) => {
 		.catch(error => {
 			console.log(error);
 		});
-  
+}
+
+const searchAndIDMovie = (searchQuery, key) => {
+	fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${searchQuery}`, {
+    method: 'GET',
+    header: {
+      'Content-Type': 'application/json',
+    }
+  })
+    .then(respObj => respObj.json())
+    .then(data => {
+			viewTitle(data.results[0].id, key)
+		})
+		.catch(error => {
+			console.log(error);
+		});
 }
 
 const viewTitle = (id, key) => {
@@ -144,8 +159,15 @@ function newResultsListener() {
 
 document.addEventListener('DOMContentLoaded', function() {
 		
-	
-		moviesOnLoad(apiKey);
+	// Movie is found using script in ratings.js then
+	// Then retrieve movie from Chrome Storage  (saved on menu.js:27)
+		chrome.storage.sync.get(['movie'], function(data) {
+			moviesOnLoad(apiKey);
+			if (data.movie) {
+				searchAndIDMovie(data.movie, apiKey);
+				chrome.storage.sync.clear();
+			}
+		});
 		
 		const logo = document.querySelector('#logo');
 		const searchButton = document.querySelector('#searchbutton');
@@ -170,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		closeIcon.addEventListener('click', e => {
 			popup.classList.add('hide');
-    });
-
+		});
+		
     
     
 	// fetch data from URL
@@ -188,5 +210,3 @@ document.addEventListener('DOMContentLoaded', function() {
 	// respond with an object of all the movie details 
 });
 
-let thisMovie = getMovieTitle();
-console.log(thisMovie);

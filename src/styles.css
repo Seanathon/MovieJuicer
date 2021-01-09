@@ -8,6 +8,7 @@ body {
 	font-family: sans-serif;
 	padding: 0;
 	margin: 0;
+	min-height: 575px;
 	background-color: #0B0806;
 	color: #e6e4e4;
 	border-radius: 0.47em;
@@ -218,6 +219,38 @@ button i {
 	height: 100%;
 	grid-template-columns: 33.3% 1fr;
 	column-gap: 5%;
+}
+
+.small-popup {
+	padding: 0;
+}
+.small-popup .background {
+	background-color: #0B0806;
+}
+.small-popup header {
+	z-index: 1;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+.small-popup .popup-bg {
+	display: none;
+}
+.small-popup section {
+	grid-template-columns: 1fr;
+	grid-template-rows: 80% 1fr;
+	overflow-y: scroll;
+}
+.small-popup .info {
+	padding: 0 2rem;
+	position: relative;
+	top: -6rem;
+	z-index: 2;
+	font-size: 0.6em;
+}
+.small-popup .mask {
+	background: rgb(11,8,6);
+	background: linear-gradient(0, rgba(11,8,6,1) 1%, rgba(11,8,6,0) 100%);
 }
 
 .popup-poster:hover {

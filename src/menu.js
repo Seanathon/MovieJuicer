@@ -9,3 +9,30 @@ chrome.contextMenus.create({
   contexts:["selection"],
   onclick: searchTMDB
 });
+
+// save movie name in local storage
+function saveMovie(movie) {
+  if (!movie) return 'No movie to save';
+  chrome.storage.sync.set({'movie': movie})
+}
+
+// this is a listener that waits and listens for messages sent from other 
+// scripts, when the message is sent with "setMovie" key, it will save it
+// then when the popup or new tab loads. It will automatically look for 
+// stored movie and use it.
+chrome.runtime.onMessage.addListener(
+  function(message, sender, sendResponse) {
+    switch(message.type) {
+      case "setMovie":
+        saveMovie(message.movie); 
+        console.log('success');
+        break;  
+      case "sendMovie":
+        sendResponse(getMovie());
+        break;
+      default:
+        console.error("Unrecognized message:", message);
+    }
+    
+  }
+);

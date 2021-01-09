@@ -6,6 +6,7 @@
 
 const apiKey = 'f3a00745aef1f38d75739bbb768b6096';
 const popup = document.querySelector('.popup-container');
+const body = document.querySelector('body');
 
 const buildResults = data => {
 		
@@ -52,7 +53,17 @@ const buildSingleResult = data => {
 	title.innerHTML = data.title;
 
 	const overview = document.querySelector('.overview');
-  overview.innerHTML = data.overview;
+	overview.innerHTML = data.overview;
+	
+	const year = document.querySelector('.year');
+	year.innerHTML = data.release_date.split('-')[0];
+
+	const genre = document.querySelector('.genre');
+	genre.innerHTML = data.genres[0].name;
+	
+	const voteAvg = document.querySelector('.vote-avg');
+	voteAvg.innerHTML = `${data.vote_average} <span class="vote-count">(${data.vote_count})</span>`;
+  
   
   // const infoButton = document.querySelector('#tmdb-button')
   image.addEventListener('click', function() {
@@ -71,7 +82,7 @@ const moviesOnLoad = (key) => {
   })
     .then(respObj => respObj.json())
     .then(data => {
-			console.log(data);
+			// console.log(data);
 			buildResults(data);
 			newResultsListener();
 		})
@@ -90,7 +101,7 @@ const searchMovies = (searchQuery, key) => {
   })
     .then(respObj => respObj.json())
     .then(data => {
-			console.log(data);
+			// console.log(data);
 			clearResults();
 			buildResults(data);
 			newResultsListener();
@@ -125,9 +136,10 @@ const viewTitle = (id, key) => {
   })
     .then(respObj => respObj.json())
     .then(data => {
-			console.log(data);
+			// console.log(data);
 			buildSingleResult(data);
 			popup.classList.remove('hide');
+			body.classList.add('lock-scroll')
 		})
 		.catch(error => {
 			console.log(error);
@@ -192,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		closeIcon.addEventListener('click', e => {
 			popup.classList.add('hide');
+			body.classList.remove('lock-scroll')
 		});
 		
     

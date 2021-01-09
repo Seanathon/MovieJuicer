@@ -31,11 +31,14 @@ const buildResults = data => {
 		}
 
 		image.src = `https://image.tmdb.org/t/p/w500${data.results[i].poster_path}`
-		
+    // resultContainer.addEventListener('click', function() {
+    //   window.open(`https://themoviedb.org/movie/${data.results[i].id}-${data.results[i].original_title}`)
+    // })
 		resultContainer.append(image)
 		resultContainer.append(resultName)
 		container.append(resultContainer);
-	};
+  };
+  
 }
 
 const buildSingleResult = data => {
@@ -49,7 +52,13 @@ const buildSingleResult = data => {
 	title.innerHTML = data.title;
 
 	const overview = document.querySelector('.overview');
-	overview.innerHTML = data.overview;
+  overview.innerHTML = data.overview;
+  
+  // const infoButton = document.querySelector('#tmdb-button')
+  image.addEventListener('click', function() {
+    window.open(`https://themoviedb.org/movie/${data.id}-${data.original_title}`)
+  })
+
 }
 
 const moviesOnLoad = (key) => {
@@ -129,10 +138,11 @@ function newResultsListener() {
 				viewTitle(id, apiKey);
 			})
 		}
-	}, 1000);
+  }, 1000);
+  
 }
 
-
+// search netflix listing for movie name
 
 document.addEventListener('DOMContentLoaded', function() {
 		
@@ -162,13 +172,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		closeIcon.addEventListener('click', e => {
 			popup.classList.add('hide');
-		});
-
-		
+    });
 
 	// fetch data from URL
 	// this URL accesses the movie db's search function 
-	
+  
 	// https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 
 	// this will return a few fields, one of which is results which has an array of movies

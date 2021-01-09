@@ -174,9 +174,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Movie is found using script in ratings.js then
 	// Then retrieve movie from Chrome Storage  (saved on menu.js:27)
 		chrome.storage.sync.get(['movie'], function(data) {
+			// load movies on load, as usual
 			moviesOnLoad(apiKey);
+			// if a movie was found on Netflix
 			if (data.movie) {
+				// Search movies, grab ID from first result, then view it in popup
 				searchAndIDMovie(data.movie, apiKey);
+				// probably not a wise long-term solution but helpful in keeping 
+				// conflicts away, this line clears local storage after movie lookup
+				// to make room for the next lookup.
 				chrome.storage.sync.clear();
 			}
 		});

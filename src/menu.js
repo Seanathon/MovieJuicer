@@ -27,9 +27,6 @@ chrome.runtime.onMessage.addListener(
         saveMovie(message.movie); 
         console.log('success');
         break;  
-      case "sendMovie":
-        sendResponse(getMovie());
-        break;
       default:
         console.error("Unrecognized message:", message);
     }

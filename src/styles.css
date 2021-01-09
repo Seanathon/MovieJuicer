@@ -26,6 +26,7 @@ img {
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 0.85rem;
 	padding-left: 0;
 	max-width: 375px;
@@ -35,11 +36,11 @@ img {
 }
 .meta li {
 	display: block;
-	background-color: #242f32;
-	color: #ffffff;
+	background-color: #faa014;
+	color: #0B0806;
 	padding: 0.5rem 0.6rem;
 	border-radius: 0.7rem;
-	font-weight: 500;
+	font-weight: 600;
 	letter-spacing: 0.06em;
 }
 .desktop-container + .popup-container .meta li {
@@ -104,7 +105,8 @@ img {
 	transition: all 540ms ease-in-out;
 }
 #searchbar::placeholder {
-	font-weight: 100;
+	font-weight: 300;
+	font-family: 'Open Sans', sans-serif;
 	color: #e6e4e4;
 }
 #searchbar:focus {
@@ -282,6 +284,10 @@ button i {
 	top: -6rem;
 	z-index: 2;
 	font-size: 0.6em;
+}
+.info .overview {
+	font-size: 1.57em;
+	font-family: 'Open Sans', sans-serif;
 }
 .small-popup .mask {
 	background: rgb(11,8,6);

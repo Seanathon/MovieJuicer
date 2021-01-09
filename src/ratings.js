@@ -25,8 +25,8 @@ if (window.sessionStorage !== "undefined") {
 
     var config = {
         attributes: true,
-        childList: true
-        // characterData: true
+        childList: true,
+        characterData: true
     };
   observer.observe(target, config);
 }
@@ -34,4 +34,9 @@ if (window.sessionStorage !== "undefined") {
 const movieTitle = getMovieTitle();
 console.log(movieTitle)
 
+if(movieTitle) {
+    chrome.runtime.sendMessage({movie: movieTitle}, function(response) {
+        console.log(response);
+    });
+}
 

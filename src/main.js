@@ -74,7 +74,7 @@ const buildSingleResult = data => {
 
 const moviesOnLoad = (key) => {
 	// options include: now_playing, top_rated, popular
-  fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US`, {
+  fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US`, {
     method: 'GET',
     header: {
       'Content-Type': 'application/json',

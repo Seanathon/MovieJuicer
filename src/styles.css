@@ -226,6 +226,15 @@ button i {
 .popup-container .popup-bg {
 	min-width: 320px;
 }
+.featured-movie-poster {
+	justify-self: end;
+}
+.popup-container .popup-poster {
+	position: relative;
+	max-width: 350px;
+	max-height: 535px;
+	float: right;
+}
 
 .popup-container .mask {
 	z-index: 1;
@@ -256,6 +265,7 @@ button i {
 	height: 100%;
 	grid-template-columns: 33.3% 1fr;
 	column-gap: 5%;
+	margin-top: 3rem;
 }
 
 .small-popup {
@@ -274,6 +284,7 @@ button i {
 	display: none;
 }
 .small-popup section {
+	margin-top: 0;
 	grid-template-columns: 1fr;
 	grid-template-rows: 80% 1fr;
 	overflow-y: scroll;
@@ -288,6 +299,7 @@ button i {
 .info .overview {
 	font-size: 1.57em;
 	font-family: 'Open Sans', sans-serif;
+	max-width: 600px;
 }
 .small-popup .mask {
 	background: rgb(11,8,6);
@@ -313,6 +325,7 @@ section p {
 .desktop-container #results-container {
 	max-width: none;
 	display: grid;
+	padding: 1rem 7rem;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	column-gap: 5%;
 	row-gap: 2%;
